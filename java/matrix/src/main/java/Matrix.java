@@ -1,37 +1,32 @@
-import java.util.ArrayList;
-
 class Matrix {
-
-    private String stringMatrix;
+    
+    int rows;
+    int columns;
+    int[][] matrix;
     
     Matrix(String matrixAsString) {
-        this.stringMatrix = matrixAsString;
-    }
-
-    int[] getRow(int rowNumber) {
-        ArrayList<Integer> row = new ArrayList<Integer>();
-        int rowLevel = 2 - rowNumber;
-        
-        for(int i = 0; i < this.stringMatrix.length(); i++){
-            String number = "";
-            if(rowLevel == 1){
-                if(this.stringMatrix.charAt(i) != ' ')
-                    number += this.stringMatrix.charAt(i);
-                if(!(i+1 == this.stringMatrix.length())){
-                    if(this.stringMatrix.charAt(i+1) == ' '){
-                    row.add(Integer.parseInt(number));
-                    number = "";
-                }
-                } else 
-                    row.add(Integer.parseInt(number));
-            }else if(this.stringMatrix.charAt(i) == 'n')
-                rowLevel += 1;
+        String[] rows = matrixAsString.split("\\n");
+        String[] columns = rows[0].split(" ");
+        this.rows = rows.length;
+        this.columns = columns.length;
+        matrix = new int[this.rows][this.columns];
+        for (int i = 0; i < rows.length; i++) {
+            String[] number = rows[i].split(" ");
+            for (int j = 0; j < number.length; j++) {
+                matrix[i][j] = Integer.parseInt(number[j]);
+            }
         }
-
-        return row.stream().mapToInt(i -> i).toArray();
     }
-
+    
+    int[] getRow(int rowNumber) {
+        return matrix[rowNumber - 1];
+    }
+    
     int[] getColumn(int columnNumber) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        int[] column = new int[this.rows];
+        for (int i = 0; i < matrix.length; i++) {
+            column[i] = matrix[i][columnNumber - 1];
+        }
+        return column;
     }
 }
