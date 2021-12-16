@@ -9,36 +9,11 @@ public class Robot{
     }
 
     public void turnRight() {
-                switch(this.robotOrientation) {
-                    case NORTH:
-                        robotOrientation = Orientation.EAST;
-                        break;
-                    case EAST:
-                        robotOrientation = Orientation.SOUTH;
-                        break;
-                    case SOUTH:
-                        robotOrientation= Orientation.WEST;
-                        break;
-                    case WEST:
-                        robotOrientation= Orientation.NORTH;
-                        break;
-                }
-            }
-    
+                this.robotOrientation = Orientation.values()[((this.robotOrientation.ordinal()+1)%4)];
+    }
+
     public void turnLeft(){
-                switch(this.robotOrientation) {
-                    case NORTH:
-                        robotOrientation = Orientation.WEST;
-                        break;
-                    case EAST:
-                        robotOrientation = Orientation.NORTH;
-                        break;
-                    case SOUTH:
-                        robotOrientation = Orientation.EAST;
-                        break;
-                    case WEST:
-                        robotOrientation = Orientation.SOUTH;
-                }
+                this.robotOrientation = Orientation.values()[((this.robotOrientation.ordinal()+3)%4)];
     }
 
     public void advance(){
