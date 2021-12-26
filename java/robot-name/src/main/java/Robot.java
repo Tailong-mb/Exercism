@@ -6,7 +6,7 @@ public class Robot{
 
     //Attributes 
     private final static String letterUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private final static List<String> listOfRobotName = new ArrayList<String>();
+    private static List<String> listOfRobotName = new ArrayList<String>();
     private String robotName ="";
 
     //Constructor 
